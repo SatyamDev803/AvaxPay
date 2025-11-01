@@ -1,14 +1,15 @@
 'use client';
 
+import { Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { CheckCircle2, Copy, ExternalLink, Share2 } from 'lucide-react';
+import { CheckCircle2, Copy, ExternalLink, Share2, Loader2 } from 'lucide-react';
 import { useState } from 'react';
 import { toast } from 'sonner';
 import { shortenAddress } from '@/lib/utils';
 
-export default function SendSuccessPage() {
+function SuccessContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const txHash = searchParams.get('tx') || '';
@@ -135,5 +136,22 @@ export default function SendSuccessPage() {
         </div>
       </Card>
     </div>
+  );
+}
+
+export default function SendSuccessPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-background flex items-center justify-center">
+          <div className="text-center">
+            <Loader2 className="w-8 h-8 animate-spin text-primary mx-auto mb-4" />
+            <p className="text-muted-foreground">Loading transaction details...</p>
+          </div>
+        </div>
+      }
+    >
+      <SuccessContent />
+    </Suspense>
   );
 }
