@@ -7,7 +7,7 @@ import { Navbar } from "@/components/layout/Navbar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "AvaxPay - Decentralized Payment Processor",
+  title: "AvaxPay",
   description: "Accept crypto payments with 0.5% fees on Avalanche. Built with Core Wallet support.",
   keywords: ["Avalanche", "AVAX", "payments", "crypto", "Core Wallet", "Web3"],
 };
